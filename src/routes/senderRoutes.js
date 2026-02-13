@@ -13,7 +13,7 @@ router.get('/:id', senderController.getById)
 router.post('/', senderController.create)
 
 //atualizar os dados de um remetente 
-router.put('/:id', senderController.update)
+router.patch('/:id', senderController.update)
 
 //deletar um remetente do sistema 
 router.delete('/:id', senderController.delete)
