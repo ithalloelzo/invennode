@@ -6,8 +6,8 @@ const app = express()
 
 app.use(express.json()) //api aceitar json
 
-app.use('/senders', senderRoutes); //rotas dos remetentes
-app.use('/clients', clientRoutes)
+app.use('/senders', senderRoutes) //rotas dos remetentes
+app.use('/clients', clientRoutes) //rota dos clientes
 
 app.get('/', (req, res) => {
   res.send('Server Running')

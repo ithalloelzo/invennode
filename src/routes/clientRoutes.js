@@ -5,5 +5,9 @@ const router = Router()
 
 //Lista todos os clientes
 router.get('/', clientController.listAll)
+//listar clientes por id
+router.get('/:id', clientController.getById)
+//criar um novo registro de cliente
+router.post('/', clientController.create)
 
 export default router
