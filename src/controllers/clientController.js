@@ -47,5 +47,14 @@ export const clientController = {
 
     return res.status(200).json(updatedClient)
 },
-     
+
+  delete: (req, res) => {
+      const { id } = req.params
+      const deleted = clientModel.delete(id)
+  
+      if (!deleted) {
+        return res.status(404).json({ message: "Error: Client not found." })
+      }else{}
+       res.status(200).json({ message: "Success: client deleted."}) 
+    }    
 }

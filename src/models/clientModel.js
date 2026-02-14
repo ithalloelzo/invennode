@@ -32,4 +32,13 @@ export const clientModel = {
         }
         return null
       },
+
+      delete: (id) => {
+          const index = clients.findIndex(client => client.id === id)
+          if (index !== -1) {
+            const deleted = clients.splice(index, 1);
+            return deleted
+          }
+          return null
+        }
 }

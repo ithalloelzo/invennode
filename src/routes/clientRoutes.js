@@ -11,5 +11,7 @@ router.get('/:id', clientController.getById)
 router.post('/', clientController.create)
 //atualizar registro de cliente
 router.patch('/:id', clientController.update)
+//deletar registro de cliente
+router.delete('/:id', clientController.delete)
 
 export default router
