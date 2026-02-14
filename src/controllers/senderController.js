@@ -34,16 +34,18 @@ export const senderController = {
   //Atualizar dados a partir do id
   update: (req, res) => {
     const { id } = req.params
-    // Pegar só o que pode ser alterado
-    const { name, email, password } = req.body
+    const updateData = req.body
 
+    if (Object.keys(updateData).length === 0) {
+      return res.status(400).json({ message: "No data provided for update." })
+    }
     // Mandar pro Model apenas os campos autorizados
-    const updatedSender = senderModel.update(id, { name, email, password })
+    const updatedSender = senderModel.update(id, updateData)
 
     if (!updatedSender) {
       return res.status(404).json({ message: "Sender not found." })
     }
-    res.status(200).json(updatedSender)
+    return res.status(200).json(updatedSender)
   },
 
   //Remover um remetente a partir do Id
