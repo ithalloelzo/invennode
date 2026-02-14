@@ -10,7 +10,7 @@ export const clientModel = {
     return clients.find(client => client.id === id)
   },
 
-  create: (clientData) => {
+  create: (clientData) => { //cadastrar cliente
       const newClient = {
         id: crypto.randomUUID(), 
         ...clientData
@@ -18,4 +18,18 @@ export const clientModel = {
       clients.push(newClient)
       return newClient
     },
+
+    update: (id, updateData) => {
+        const index = clients.findIndex(client => client.id === id)
+        if (index !== -1) {
+          // separar o 'id' do updateData 
+          // para o id não ser alterado
+          const { id: _, ...safeData } = updateData 
+    
+          //juntar o objeto original apenas com os dados seguros
+          clients[index] = { ...clients[index], ...safeData }
+          return clients[index]
+        }
+        return null
+      },
 }

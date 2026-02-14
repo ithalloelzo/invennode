@@ -9,5 +9,7 @@ router.get('/', clientController.listAll)
 router.get('/:id', clientController.getById)
 //criar um novo registro de cliente
 router.post('/', clientController.create)
+//atualizar registro de cliente
+router.patch('/:id', clientController.update)
 
 export default router
