@@ -58,7 +58,26 @@ export const clientController = {
     if (Object.keys(updateData).length === 0) {
       return res.status(400).json({ message: "Error: No data provided for update." })
     }
+    //validação do nome
+    if (updateData.name !== undefined && typeof updateData.name !== 'string') {
+      return res.status(400).json({ message: "Error: name must be a string." });
+    }
 
+    // validação de email
+    if (updateData.email && !validator.isEmail(updateData.email)) {
+      return res.status(400).json({ message: "Error: Invalid email." });
+    }
+
+    //validação de telefone
+    if (updateData.phone && !validator.isMobilePhone(updateData.phone, 'pt-BR')) {
+      return res.status(400).json({ message: "Error: Invalid phone." });
+    }
+
+    // validação do cep
+    if (updateData.zipCode && !validator.isPostalCode(updateData.zipCode, 'BR')) {
+      return res.status(400).json({ message: "Error: Invalid Zip Code." });
+    }
+    
     // chama o model passando apenas o que o cliente enviou
     const updatedClient = clientModel.update(id, updateData)
 

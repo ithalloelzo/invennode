@@ -29,11 +29,11 @@ export const senderController = {
     }
     //validação do nome
     if (name !== undefined && typeof name !== 'string') {
-      return res.status(400).json({ message: "Error: name must be a string." });
+      return res.status(400).json({ message: "Error: name must be a string." })
     }
     //validação do email
     if (email && !validator.isEmail(email)) {
-      return res.status(400).json({ message: "Error: Invalid email." });
+      return res.status(400).json({ message: "Error: Invalid email." })
     }
 
     const newSender = senderModel.create({ name, email, password });
@@ -45,9 +45,19 @@ export const senderController = {
     const { id } = req.params
     const updateData = req.body
 
+    //avisar que não há nada na requisição
     if (Object.keys(updateData).length === 0) {
       return res.status(400).json({ message: "No data provided for update." })
     }
+    //validação de nome
+    if (updateData.name !== undefined && typeof updateData.name !== 'string') {
+      return res.status(400).json({ message: "Error: name must be a string." })
+    }
+    //validação do email
+    if (updateData.email && !validator.isEmail(updateData.email)) {
+      return res.status(400).json({ message: "Error: Invalid email." })
+    }
+
     // Mandar pro Model apenas os campos autorizados
     const updatedSender = senderModel.update(id, updateData)
 
