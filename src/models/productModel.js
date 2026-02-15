@@ -9,8 +9,9 @@ export const productModel = {
     return products.find(product => product.id === id)
   },
   create: (productData) => {
+    const shortId = crypto.randomBytes(4).toString('hex') //criar id hexadecimal
     const newProduct = {
-      id: crypto.randomUUID(),
+      id: shortId,
       ...productData
     };
     products.push(newProduct)
