@@ -71,12 +71,31 @@ export const senderController = {
     if (updateData.name !== undefined && typeof updateData.name !== 'string') {
       return res.status(400).json({ message: "Error: name must be a string." })
     }
-    //validação do email
+    //verifica se é um email valido
     if (updateData.email && !validator.isEmail(updateData.email)) {
       return res.status(400).json({ message: "Error: Invalid email." })
     }
+    //alteração de email a partir da mesma senha na base de dados
+    //busca o remetente atual no Model para comparação
+    const currentSender = senderModel.findById(id);
+    if (!currentSender) {
+    return res.status(404).json({ message: "Error: Sender not found." });
+    }
+    //pede a senha para trocar o email
+    if (updateData.email && updateData.email !== currentSender.email) {
+    if (!updateData.password) {
+      return res.status(400).json({ 
+        message: "Error: Password is required to change email address." 
+      });
+    }
+    //verifica se a senha é a mesma cadastrada na base de dados
+    if (updateData.password !== currentSender.password) {
+      return res.status(401).json({ 
+        message: "Error: Invalid password. Security check failed." 
+      });
+    }}
 
-    //validação de senha
+  //validação de senha
   if (updateData.password !== undefined) {
     // verificação de Tipo 
     if (typeof updateData.password !== 'string') {
@@ -92,7 +111,7 @@ export const senderController = {
       })
     }
 
-    //verificação de Complexidade
+    //verificação de complexidade
     const hasNumber = /\d/.test(updateData.password);
     if (!hasNumber) {
       return res.status(400).json({ 
