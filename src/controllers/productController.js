@@ -44,6 +44,7 @@ export const productController = {
     const { id } = req.params;
     const { name, price, quantity } = req.body;
 
+    
     //validação de nome
     if (name !== undefined && typeof name !== 'string') {
       return res.status(400).json({ message: "Error: name must be a string." });

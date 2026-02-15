@@ -1,4 +1,5 @@
 import { senderModel } from '../models/senderModel.js'
+import validator from 'validator'
 
 export const senderController = {
   //listar todos os remetentes 
@@ -25,6 +26,14 @@ export const senderController = {
     // Validação dos campos obrigatórios 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Name, email and password are required fields." })
+    }
+    //validação do nome
+    if (name !== undefined && typeof name !== 'string') {
+      return res.status(400).json({ message: "Error: name must be a string." });
+    }
+    //validação do email
+    if (email && !validator.isEmail(email)) {
+      return res.status(400).json({ message: "Error: Invalid email." });
     }
 
     const newSender = senderModel.create({ name, email, password });
