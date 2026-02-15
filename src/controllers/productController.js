@@ -41,30 +41,40 @@ export const productController = {
   },
 
   update: (req, res) => {
-    const { id } = req.params;
-    const { name, price, quantity } = req.body;
+    const { id } = req.params
+    const updateData = req.body
 
-    
+    //avisar que não tem nada escrito na requisição
+    if (Object.keys(updateData).length === 0) {
+      return res.status(400).json({ message: "No data provided for update." })
+    }
+
     //validação de nome
-    if (name !== undefined && typeof name !== 'string') {
-      return res.status(400).json({ message: "Error: name must be a string." });
+    if (updateData.name !== undefined && typeof updateData.name !== 'string') {
+      return res.status(400).json({ message: "Error: name must be a string." })
     }
     //validação de preço
-    if (price !== undefined && typeof price !== 'number') {
-      return res.status(400).json({ message: "Error: price must be a number." });
-    }
+    if (updateData.price !== undefined) {
+    if (typeof updateData.price !== 'number' || updateData.price <= 0) {
+      return res.status(400).json({ 
+        message: "Error: price must be a positive number." 
+      })}}
+    
     //validação de quantidade
-    if (quantity !== undefined && !Number.isInteger(quantity)) {
-      return res.status(400).json({ message: "Error: quantity must be an integer." });
-    }
+    if (updateData.quantity !== undefined) {
+    if (!Number.isInteger(updateData.quantity) || updateData.quantity <= 0) {
+      return res.status(400).json({ 
+        message: "Error: quantity must be a positive integer." 
+      });
+    }}
 
-    const updatedProduct = productModel.update(id, { name, price, quantity });
+    const updatedProduct = productModel.update(id, updateData);
 
     if (!updatedProduct) {
-      return res.status(404).json({ message: "Error: Product not found." });
+      return res.status(404).json({ message: "Error: Product not found." })
     }
 
-    return res.status(200).json(updatedProduct);
+    return res.status(200).json(updatedProduct)
   },
 
   delete: (req, res) => {
