@@ -1,20 +1,20 @@
 export const products = [
       {
-    id: "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    id: "6693a97a",
     name: "Brinco de Pato",
     price: 25.00,
     quantity: 150
   },
   {
-    id: "550e8400-e29b-41d4-a716-446655440000",
+    id: "e494e1bd",
     name: "Deck Yu-Gi-Oh",
     price: 12.50,
-    quantity: 80
+    quantity: 3
   },
   {
-    id: "a1b2c3d4-e5f6-4g7h-8i9j-k0l1m2n3o4p5",
+    id: "71b93777",
     name: "Colar Pochita",
-    price: 3.75,
-    quantity: 50
+    price: 85.00,
+    quantity: 5
   }
 ]
