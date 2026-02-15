@@ -11,7 +11,7 @@ export const clientController = {
         const client = clientModel.findById(id)
         
         if (!client) {
-          return res.status(404).json({ message: "Client not found." })
+          return res.status(404).json({ message: "Error: Client not found." })
         }
         res.status(200).json(client)
       },
@@ -21,7 +21,7 @@ export const clientController = {
         
         // Validação dos campos obrigatórios 
         if (!name || !phone || !address || !zipCode) {
-          return res.status(400).json({ message: "Name, phone, address and zipCode are required fields." })
+          return res.status(400).json({ message: "Error: Name, phone, address and zipCode are required fields." })
         }
     
         const newClient = clientModel.create({ name, email, phone, address, zipCode});
@@ -35,14 +35,14 @@ export const clientController = {
 
   // verificam se a requisição não está vazia
       if (Object.keys(updateData).length === 0) {
-      return res.status(400).json({ message: "No data provided for update." })
+      return res.status(400).json({ message: "Error: No data provided for update." })
       }
 
   // chama o model passando apenas o que o cliente enviou
      const updatedClient = clientModel.update(id, updateData)
 
      if (!updatedClient) {
-       return res.status(404).json({ message: "Client not found." })
+       return res.status(404).json({ message: "Error: Client not found." })
     }
 
     return res.status(200).json(updatedClient)

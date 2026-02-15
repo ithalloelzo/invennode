@@ -12,6 +12,9 @@ router.get('/', productController.listAll)
 //criar produtos
 router.post('/', productController.create)
 
+//atualizar produtos
+router.patch('/:id', productController.update)
+
 
 
 export default router

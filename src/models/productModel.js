@@ -16,5 +16,18 @@ export const productModel = {
         products.push(newProduct)
         return newProduct
       },
+    update: (id, updateData) => {
+            const index = products.findIndex(product => product.id === id)
+            if (index !== -1) {
+              // separar o 'id' do updateData 
+              // para o id não ser alterado
+              const { id: _, ...safeData } = updateData 
+        
+              //juntar o objeto original apenas com os dados seguros
+              products[index] = { ...products[index], ...safeData }
+              return products[index]
+            }
+            return null
+          },
 
 }

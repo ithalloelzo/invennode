@@ -11,7 +11,7 @@ export const productController = {
             const product = productModel.findById(id)
             
             if (!product) {
-              return res.status(404).json({ message: "Product not found." })
+              return res.status(404).json({ message: "Error: Product not found." })
             }
             res.status(200).json(product)
           },
@@ -38,5 +38,31 @@ export const productController = {
     const newProduct = productModel.create({ name, price, quantity })
 
     return res.status(201).json(newProduct)
+  },
+
+  update: (req, res) => {
+    const { id } = req.params;
+    const { name, price, quantity } = req.body;
+
+    //validação de nome
+    if (name !== undefined && typeof name !== 'string') {
+      return res.status(400).json({ message: "Error: name must be a string." });
+    }
+    //validação de preço
+    if (price !== undefined && typeof price !== 'number') {
+      return res.status(400).json({ message: "Error: price must be a number." });
+    }
+    //validação de quantidade
+    if (quantity !== undefined && !Number.isInteger(quantity)) {
+      return res.status(400).json({ message: "Error: quantity must be an integer." });
+    }
+
+    const updatedProduct = productModel.update(id, { name, price, quantity });
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Error: Product not found." });
+    }
+
+    return res.status(200).json(updatedProduct);
   }
 }
