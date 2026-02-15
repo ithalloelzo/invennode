@@ -23,12 +23,12 @@ export const senderModel = {
   },
 
   // Atualização de campos
- update: (id, updateData) => {
+  update: (id, updateData) => {
     const index = senders.findIndex(sender => sender.id === id)
     if (index !== -1) {
       // separar o 'id' do updateData 
       // para o id não ser alterado
-      const { id: _, ...safeData } = updateData 
+      const { id: _, ...safeData } = updateData
 
       //juntar o objeto original apenas com os dados seguros
       senders[index] = { ...senders[index], ...safeData }
@@ -46,4 +46,4 @@ export const senderModel = {
     }
     return null
   }
-};
+}

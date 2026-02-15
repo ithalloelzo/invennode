@@ -11,7 +11,7 @@ export const senderController = {
   getById: (req, res) => {
     const { id } = req.params
     const sender = senderModel.findById(id)
-    
+
     if (!sender) {
       return res.status(404).json({ message: "Sender not found." })
     }
@@ -21,7 +21,7 @@ export const senderController = {
   //criar um novo remetente 
   create: (req, res) => {
     const { name, email, password } = req.body
-    
+
     // Validação dos campos obrigatórios 
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Name, email and password are required fields." })
@@ -55,7 +55,7 @@ export const senderController = {
 
     if (!deleted) {
       return res.status(404).json({ message: "Error: Sender not found." })
-    }else{}
-     res.status(200).json({ message: "Success: sender deleted."}) 
+    } else { }
+    res.status(200).json({ message: "Success: sender deleted." })
   }
-};
+}

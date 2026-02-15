@@ -1,27 +1,27 @@
 import { productModel } from "../models/productModel.js"
 
 export const productController = {
-    listAll: (req, res) => {
-            const products = productModel.findAll()
-            res.status(200).json(products)
-          },
-    
-        getById: (req, res) => {
-            const { id } = req.params
-            const product = productModel.findById(id)
-            
-            if (!product) {
-              return res.status(404).json({ message: "Error: Product not found." })
-            }
-            res.status(200).json(product)
-          },
-          create: (req, res) => {
+  listAll: (req, res) => {
+    const products = productModel.findAll()
+    res.status(200).json(products)
+  },
+
+  getById: (req, res) => {
+    const { id } = req.params
+    const product = productModel.findById(id)
+
+    if (!product) {
+      return res.status(404).json({ message: "Error: Product not found." })
+    }
+    res.status(200).json(product)
+  },
+  create: (req, res) => {
     const { name, price, quantity } = req.body;
 
     //verifica se os campos obrigatórios existem
     if (!name || price === undefined || quantity === undefined) {
-      return res.status(400).json({ 
-        message: "Error: name, price, and quantity are mandatory fields." 
+      return res.status(400).json({
+        message: "Error: name, price, and quantity are mandatory fields."
       });
     }
 
@@ -67,14 +67,14 @@ export const productController = {
   },
 
   delete: (req, res) => {
-        const { id } = req.params
-        const deleted = productModel.delete(id)
-    
-        if (!deleted) {
-          return res.status(404).json({ message: "Error: Product not found." })
-        }else{}
-         res.status(200).json({ message: "Success: Product deleted."}) 
-      } 
+    const { id } = req.params
+    const deleted = productModel.delete(id)
+
+    if (!deleted) {
+      return res.status(404).json({ message: "Error: Product not found." })
+    } else { }
+    res.status(200).json({ message: "Success: Product deleted." })
+  }
 
 
 }
