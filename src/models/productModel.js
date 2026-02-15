@@ -29,5 +29,13 @@ export const productModel = {
             }
             return null
           },
+    delete: (id) => {
+              const index = products.findIndex(product => product.id === id)
+              if (index !== -1) {
+                const deleted = products.splice(index, 1);
+                return deleted
+              }
+              return null
+            }
 
 }

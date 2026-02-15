@@ -55,6 +55,6 @@ export const clientController = {
       if (!deleted) {
         return res.status(404).json({ message: "Error: Client not found." })
       }else{}
-       res.status(200).json({ message: "Success: client deleted."}) 
+       res.status(200).json({ message: "Success: Client deleted."}) 
     }    
 }

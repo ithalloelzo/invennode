@@ -64,5 +64,17 @@ export const productController = {
     }
 
     return res.status(200).json(updatedProduct);
-  }
+  },
+
+  delete: (req, res) => {
+        const { id } = req.params
+        const deleted = productModel.delete(id)
+    
+        if (!deleted) {
+          return res.status(404).json({ message: "Error: Product not found." })
+        }else{}
+         res.status(200).json({ message: "Success: Product deleted."}) 
+      } 
+
+
 }

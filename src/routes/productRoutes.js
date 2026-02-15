@@ -15,6 +15,9 @@ router.post('/', productController.create)
 //atualizar produtos
 router.patch('/:id', productController.update)
 
+//deletar produtos
+router.delete('/:id', productController.delete)
+
 
 
 export default router
