@@ -36,6 +36,24 @@ export const senderController = {
       return res.status(400).json({ message: "Error: Invalid email." })
     }
 
+    //validação de senha
+    if (password !== undefined && typeof password !== 'string') {
+      return res.status(400).json({ message: "Error: password must be a string." })
+    }
+    //comprimento de senha
+    if (!password || password.length < 8) {
+      return res.status(400).json({ 
+        message: "Error: Password must be at least 8 characters long." 
+      })
+    }
+    //a senha deve ter pelo menos um numero
+     const hasNumber = /\d/.test(password);
+    if (!hasNumber) {
+      return res.status(400).json({ 
+        message: "Error: Password must contain at least one number." 
+      })
+    }
+
     const newSender = senderModel.create({ name, email, password });
     res.status(201).json(newSender)
   },
@@ -58,11 +76,36 @@ export const senderController = {
       return res.status(400).json({ message: "Error: Invalid email." })
     }
 
+    //validação de senha
+  if (updateData.password !== undefined) {
+    // verificação de Tipo 
+    if (typeof updateData.password !== 'string') {
+      return res.status(400).json({ 
+        message: "Error: Password must be a string." 
+      })
+    }
+
+    // Verificação de Comprimento
+    if (updateData.password.length < 8) {
+      return res.status(400).json({ 
+        message: "Error: Password must be at least 8 characters long." 
+      })
+    }
+
+    //verificação de Complexidade
+    const hasNumber = /\d/.test(updateData.password);
+    if (!hasNumber) {
+      return res.status(400).json({ 
+        message: "Error: Password must contain at least one number." 
+      });
+    }
+  }
+
     // Mandar pro Model apenas os campos autorizados
     const updatedSender = senderModel.update(id, updateData)
 
     if (!updatedSender) {
-      return res.status(404).json({ message: "Sender not found." })
+      return res.status(404).json({ message: "Error: Sender not found." })
     }
     return res.status(200).json(updatedSender)
   },
