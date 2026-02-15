@@ -15,4 +15,28 @@ export const productController = {
             }
             res.status(200).json(product)
           },
+          create: (req, res) => {
+    const { name, price, quantity } = req.body;
+
+    //verifica se os campos obrigatórios existem
+    if (!name || price === undefined || quantity === undefined) {
+      return res.status(400).json({ 
+        message: "Error: name, price, and quantity are mandatory fields." 
+      });
+    }
+
+    //validação de preço, pois precisa ser um número 
+    if (typeof price !== 'number') {
+      return res.status(400).json({ message: "Error: price must be a number." })
+    }
+
+    //validação de tipo para quantidade, pois precisa ser um número INTEIRO
+    if (!Number.isInteger(quantity)) {
+      return res.status(400).json({ message: "Error: quantity must be an integer." })
+    }
+
+    const newProduct = productModel.create({ name, price, quantity })
+
+    return res.status(201).json(newProduct)
+  }
 }

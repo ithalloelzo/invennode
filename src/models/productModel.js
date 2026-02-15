@@ -7,6 +7,14 @@ export const productModel = {
     },
     findById: (id) => {
         return products.find(product => product.id === id )
-    }
+    },
+    create: (productData) => {
+        const newProduct = {
+          id: crypto.randomUUID(), 
+          ...productData
+        };
+        products.push(newProduct)
+        return newProduct
+      },
 
 }

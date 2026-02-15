@@ -9,4 +9,9 @@ router.get('/:id', productController.getById)
 //listar todos os produtos
 router.get('/', productController.listAll)
 
+//criar produtos
+router.post('/', productController.create)
+
+
+
 export default router
