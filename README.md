@@ -4,6 +4,17 @@
 Este projeto foi desenvolvido como parte da Iniciativa Code Lab, do Instituto Programadores do Amanhã, com o objetivo de desenvolver um probjeto backend, com a linguagem JavaScript, utilziando Node.Js e a biblioteca Express. A proposta é criar uma API Rest, no protocolo HTTP com as operações CRUD(Criar, Ler, Atualizar e Deletar) que resolva o problema de alguma empresa.
 O objetivo do projeto é solucionar o problema do microempreendedor que está cansado de perder o controle de suas vendas em caderninhos que somem. 
 
+‼️Problemas que este projeto resolve
+
+❌ Desorganização e Perda de Vendas: Muitos empreendedores ainda usam cadernos ou confiam na memória, o que pode levar a erros. Não saber exatamente o que tem na prateleira, acaba resultando em "vender o que não tem" ou deixar produtos vencerem/ficarem parados. </br>
+✅ Com o InvenNode, o controle de venda torna-se mais simples, centralizando o inventário em tempo real, alertando sobre níveis baixos de estoque.
+
+❌Burocracia e Lentidão: Processar uma venda manualmente e emitir um comprovante pode ser demorado e passar uma imagem amadora.
+✅Utilizando o InvenNode, a geração de notas e recibos torna-se descomplicada, profissionalizando o atendimento e aglizando o fechamento do pedido.
+
+❌Finaceiro: O erro mais comum do microempreendedor é misturar contas pessoais com as da empresa ou não saber se teve lucro real no fim do mês. Ocasionando a falta de Falta de clareza sobre o fluxo de caixa e margem de lucro por produto. </br> 
+✅Nossa solução oferece um controle financeiro integrado onde cada venda já alimenta o fluxo de caixa, permitindo visualizar a saúde financeira do negócio em segundos.
+
 🚀 Tecnologias Utilizadas
 - Node.js: Ambiente de execução para o JavaScript no servidor.
 - Express: Framework para construção de APIs REST estruturadas sob o protocolo HTTP.
